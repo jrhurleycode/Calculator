@@ -37,9 +37,6 @@ document.addEventListener("DOMContentLoaded", function () {
   equal.addEventListener("click", (e) => {
     operate(operator, previousValue, currentValue);
     display.textContent = newValue;
-    if ((newValue = 8008135)) {
-      display.textContent = "( @ Y @ )";
-    }
   });
 
   clear.addEventListener("click", (e) => {
