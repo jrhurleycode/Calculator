@@ -35,6 +35,7 @@ button {
 .display {
   grid-column: 1 / -1;
   display: flex;
+  flex-direction: column;
   justify-content: end;
   align-items: flex-end;
   font-size: 50px;
@@ -43,6 +44,10 @@ button {
   color: rgb(58, 58, 58);
   border-radius: 10px;
   padding-right: 10px;
+}
+
+.mini {
+  font-size: 25px;
 }
 
 .zero {
