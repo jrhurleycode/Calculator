@@ -67,7 +67,12 @@ function displayNumber(num) {
 //make numbers then operators on display
 function displayOperator(op) {
   operator = op;
-  previousValue = currentValue;
+  if (newValue == false) {
+    previousValue = currentValue;
+  } else {
+    previousValue = currentValue;
+    operate(op, previousValue, currentValue);
+  }
   currentValue = "";
 }
 
@@ -92,7 +97,7 @@ function operate(op, a, b) {
   if (op == "*") {
     newValue = multiply(a, b);
   }
-
+  console.log(newValue);
   currentValue = newValue;
 }
 
