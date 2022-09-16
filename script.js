@@ -3,25 +3,21 @@ const subtract = (a, b) => a - b;
 const multiply = (a, b) => a * b;
 const divide = (a, b) => a / b;
 
-let currentValue = "";
-let previousValue = "";
-let operator = "";
+let currentValue = [];
+let previousValue = [];
+let operator = [];
 let newValue = "";
+let clear = document.querySelector(".clear");
+let negPos = document.querySelector(".negPos");
+let decimal = document.querySelector(".decimal");
+let equal = document.querySelector("#equals");
+let mainDisplay = document.querySelector(".main");
+let miniDisplay = document.querySelector(".mini");
 
-//add event listners to buttons.   DOMContentLoaded = loads js after HTML but doesn't wait for stylesheets.
+let numbers = document.querySelectorAll(".operand");
+let operators = document.querySelectorAll(".operator");
 
-document.addEventListener("DOMContentLoaded", function () {
-  let clear = document.querySelector(".clear");
-  let negPos = document.querySelector(".negPos");
-  let decimal = document.querySelector(".decimal");
-  let equal = document.querySelector("#equals");
-  let mainDisplay = document.querySelector(".main");
-  let miniDisplay = document.querySelector(".mini");
-
-  let numbers = document.querySelectorAll(".operand");
-  let operators = document.querySelectorAll(".operator");
-
-  numbers.forEach((number) => {
+numbers.forEach((number) => {
     number.addEventListener("click", (e) => {
       displayNumber(e.target.textContent);
       mainDisplay.textContent = currentValue;
@@ -44,19 +40,19 @@ document.addEventListener("DOMContentLoaded", function () {
   clear.addEventListener("click", (e) => {
     mainDisplay.textContent = "";
     miniDisplay.textContent = "";
-    currentValue = "";
-    previousValue = "";
-    newValue = "";
-    operator = "";
+    currentValue = [];
+    previousValue = [];
+    newValue = [];
+    operator = [];
   });
-});
+
 
 //make numbers show on display.   limit numbers on display
 
 function displayNumber(num) {
   //removes previous number
   if (operator == true) {
-    currentValue = "";
+    currentValue = [];
   }
 
   if (currentValue.length <= 9) {
@@ -73,7 +69,7 @@ function displayOperator(op) {
     previousValue = currentValue;
     operate(op, previousValue, currentValue);
   }
-  currentValue = "";
+  currentValue = [];
 }
 
 //make computation work
