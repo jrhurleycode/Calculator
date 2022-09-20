@@ -3,9 +3,11 @@ const subtract = (a, b) => a - b;
 const multiply = (a, b) => a * b;
 const divide = (a, b) => a / b;
 
-let currentValue = [];
-let previousValue = [];
-let operator = [];
+let currentValue = "";
+let previousValue = "";
+let operator = "";
+let operatorPressed = false;
+let evaluatePermission = false;
 let newValue = "";
 let clear = document.querySelector(".clear");
 let negPos = document.querySelector(".negPos");
@@ -19,22 +21,16 @@ let operators = document.querySelectorAll(".operator");
 
 numbers.forEach((number) => {
   number.addEventListener("click", (e) => {
-    displayNumber(e.target.textContent);
-    mainDisplay.textContent = currentValue;
-    miniDisplay.textContent = previousValue + "" + operator;
+    pressNumber(e.target.textContent);
+    console.log(currentValue);
   });
 });
 
 operators.forEach((op) => {
   op.addEventListener("click", (e) => {
-    displayOperator(e.target.textContent);
-    mainDisplay.textContent = previousValue + " " + operator;
+    pressOperator(e.target.textContent);
+    console.log(operator);
   });
-});
-
-equal.addEventListener("click", (e) => {
-  operate(operator, previousValue, currentValue);
-  mainDisplay.textContent = newValue;
 });
 
 clear.addEventListener("click", (e) => {
@@ -46,32 +42,27 @@ clear.addEventListener("click", (e) => {
   operator = "";
 });
 
-//make numbers show on display.   limit numbers on display
+function pressNumber(number) {
+  if (currentValue.length <= 8)
+    mainDisplay.textContent = currentValue += number;
 
-function displayNumber(num) {
-  //removes previous number
-  if (operator == true) {
-    currentValue = [];
-  }
-
-  if (currentValue.length <= 9) {
-    currentValue += num;
+  if (operatorPressed == true) {
+    mainDisplay.textContent = currentValue;
+    miniDisplay.textContent = previousValue;
   }
 }
 
-//make numbers then operators on display
-function displayOperator(op) {
+function pressOperator(op) {
+  operatorPressed = true;
   operator = op;
-  if (newValue == false) {
-    previousValue = currentValue;
-  } else {
-    previousValue = currentValue;
-    operate(op, previousValue, currentValue);
+  mainDisplay.textContent = currentValue + " " + operator;
+
+  if (evaluatePermission == true) {
+    mainDisplay.textContent = operate(operator, previousValue, currentValue);
   }
-  currentValue = [];
+  evaluatePermission == true;
 }
 
-//make computation work
 function operate(op, a, b) {
   op = operator;
   a = Number(a);
@@ -94,10 +85,5 @@ function operate(op, a, b) {
   }
   console.log(newValue);
   currentValue = newValue;
+  return currentValue;
 }
-
-//continuous computation
-
-//decimals
-
-//negative positive
