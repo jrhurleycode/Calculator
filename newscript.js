@@ -2,6 +2,7 @@ const add = (a, b) => a + b;
 const subtract = (a, b) => a - b;
 const multiply = (a, b) => a * b;
 const divide = (a, b) => a / b;
+const resetCurrentValue = () => (currentValue = "");
 
 let currentValue = "";
 let previousValue = "";
@@ -40,6 +41,8 @@ clear.addEventListener("click", (e) => {
   previousValue = "";
   newValue = "";
   operator = "";
+  operatorPressed = false;
+  evaluatePermission = false;
 });
 
 function pressNumber(number) {
@@ -47,20 +50,24 @@ function pressNumber(number) {
     mainDisplay.textContent = currentValue += number;
 
   if (operatorPressed == true) {
+    miniDisplay.textContent = previousValue + " " + operator;
     mainDisplay.textContent = currentValue;
-    miniDisplay.textContent = previousValue;
   }
 }
 
 function pressOperator(op) {
+  if (evaluatePermission == true) {
+    operate(operator, previousValue, currentValue);
+    miniDisplay.textContent = newValue;
+  }
+
   operatorPressed = true;
   operator = op;
   mainDisplay.textContent = currentValue + " " + operator;
 
-  if (evaluatePermission == true) {
-    mainDisplay.textContent = operate(operator, previousValue, currentValue);
-  }
-  evaluatePermission == true;
+  evaluatePermission = true;
+  previousValue = currentValue;
+  resetCurrentValue();
 }
 
 function operate(op, a, b) {
