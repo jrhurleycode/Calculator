@@ -4,6 +4,7 @@ const multiply = (a, b) => a * b;
 const divide = (a, b) => a / b;
 const resetCurrentValue = () => (currentValue = "");
 
+let defaultValue = "0";
 let currentValue = "";
 let previousValue = "";
 let operator = "";
@@ -16,13 +17,16 @@ let decimal = document.querySelector(".decimal");
 let equal = document.querySelector("#equals");
 let mainDisplay = document.querySelector(".main");
 let miniDisplay = document.querySelector(".mini");
-let backspace = document.querySelector(".backspace");
+let backspaceBtn = document.querySelector(".backspace");
 
 let numbers = document.querySelectorAll(".operand");
 let operators = document.querySelectorAll(".operator");
 
+mainDisplay.textContent = defaultValue;
+
 numbers.forEach((number) => {
   number.addEventListener("click", (e) => {
+    setDefaultValue();
     pressNumber(e.target.textContent);
   });
 });
@@ -33,12 +37,13 @@ operators.forEach((op) => {
   });
 });
 
-// backspace.addEventListener("click", (e) => {
-//   currentValue.slice(0, -1);
-// });
+backspaceBtn.addEventListener("click", (e) => {
+  setDefaultValue();
+  backspace(e);
+});
 
 clear.addEventListener("click", (e) => {
-  mainDisplay.textContent = "";
+  mainDisplay.textContent = "0";
   miniDisplay.textContent = "";
   currentValue = "";
   previousValue = "";
@@ -47,6 +52,17 @@ clear.addEventListener("click", (e) => {
   operatorPressed = false;
   evaluatePermission = false;
 });
+
+function setDefaultValue() {
+  if (currentValue.length == 0) {
+    defaultValue = "0";
+    mainDisplay.textContent = defaultValue;
+  }
+
+  if (!currentValue.length == 0) {
+    defaultValue = null;
+  }
+}
 
 function pressNumber(number) {
   if (currentValue.length <= 8)
@@ -73,6 +89,14 @@ function pressOperator(op) {
   resetCurrentValue();
 }
 
+function backspace() {
+  let temp = currentValue.slice(0, -1);
+  currentValue = temp;
+  mainDisplay.textContent = currentValue;
+
+  setDefaultValue();
+}
+
 function operate(op, a, b) {
   op = operator;
   a = Number(a);
@@ -90,7 +114,7 @@ function operate(op, a, b) {
   if (op == "/") {
     newValue = divide(a, b);
   }
-  if (op == "*") {
+  if (op == "x") {
     newValue = multiply(a, b);
   }
   console.log(newValue);
