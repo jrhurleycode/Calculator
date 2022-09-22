@@ -50,10 +50,9 @@ button {
   font-size: 25px;
 }
 
-.zero {
+.equals {
   grid-column: span 2;
-  text-align: left;
-  padding-left: 38px;
+  text-align: center;
 }
 
 button:hover {

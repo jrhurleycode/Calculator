@@ -16,6 +16,7 @@ let decimal = document.querySelector(".decimal");
 let equal = document.querySelector("#equals");
 let mainDisplay = document.querySelector(".main");
 let miniDisplay = document.querySelector(".mini");
+let backspace = document.querySelector(".backspace");
 
 let numbers = document.querySelectorAll(".operand");
 let operators = document.querySelectorAll(".operator");
@@ -23,16 +24,18 @@ let operators = document.querySelectorAll(".operator");
 numbers.forEach((number) => {
   number.addEventListener("click", (e) => {
     pressNumber(e.target.textContent);
-    console.log(currentValue);
   });
 });
 
 operators.forEach((op) => {
   op.addEventListener("click", (e) => {
     pressOperator(e.target.textContent);
-    console.log(operator);
   });
 });
+
+// backspace.addEventListener("click", (e) => {
+//   currentValue.slice(0, -1);
+// });
 
 clear.addEventListener("click", (e) => {
   mainDisplay.textContent = "";
