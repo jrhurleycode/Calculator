@@ -53,6 +53,13 @@ clear.addEventListener("click", (e) => {
   evaluatePermission = false;
 });
 
+equals.addEventListener("click", (e) => {
+  operate(operator, previousValue, currentValue);
+  miniDisplay.textContent = "";
+  mainDisplay.textContent = currentValue;
+  operator = "";
+});
+
 function setDefaultValue() {
   if (currentValue.length == 0) {
     defaultValue = "0";
