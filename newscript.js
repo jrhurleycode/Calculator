@@ -39,7 +39,7 @@ operators.forEach((op) => {
 
 negPos.addEventListener("click", (e) => {
   negPosConvert(e);
-})
+});
 
 backspaceBtn.addEventListener("click", (e) => {
   setDefaultValue();
@@ -109,17 +109,21 @@ function backspace() {
 }
 
 function negPosConvert() {
-//if number is negative, make positive  
-if (currentValue.startsWith("-")) {
-  currentValue.slice(0,1)  
-  return currentValue
-} else {
-let str1 = "-"
-let str2 = ""
-str2 = str1.concat(currentValue);
-currentValue = str2
-}
-console.log(currentValue)
+  //if number is negative, make positive
+  if (currentValue.startsWith("-") == true) {
+    let temp = Math.abs(currentValue).toString();
+
+    currentValue = temp;
+  } else if (currentValue.startsWith("-") == false) {
+    //if number is positive, make negative
+    let str1 = "-";
+    let str2 = "";
+    str2 = str1.concat(currentValue);
+    currentValue = str2;
+  }
+
+  mainDisplay.textContent = currentValue;
+  console.log(currentValue);
 }
 
 function operate(op, a, b) {
@@ -136,7 +140,7 @@ function operate(op, a, b) {
   if (op == "-") {
     newValue = subtract(a, b);
   }
-  if (op == "%") {
+  if (op == "/") {
     newValue = divide(a, b);
   }
   if (op == "x") {
