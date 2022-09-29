@@ -37,6 +37,10 @@ operators.forEach((op) => {
   });
 });
 
+negPos.addEventListener("click", (e) => {
+  negPosConvert(e);
+})
+
 backspaceBtn.addEventListener("click", (e) => {
   setDefaultValue();
   backspace(e);
@@ -104,6 +108,20 @@ function backspace() {
   setDefaultValue();
 }
 
+function negPosConvert() {
+//if number is negative, make positive  
+if (currentValue.startsWith("-")) {
+  currentValue.slice(0,1)  
+  return currentValue
+} else {
+let str1 = "-"
+let str2 = ""
+str2 = str1.concat(currentValue);
+currentValue = str2
+}
+console.log(currentValue)
+}
+
 function operate(op, a, b) {
   op = operator;
   a = Number(a);
@@ -118,7 +136,7 @@ function operate(op, a, b) {
   if (op == "-") {
     newValue = subtract(a, b);
   }
-  if (op == "/") {
+  if (op == "%") {
     newValue = divide(a, b);
   }
   if (op == "x") {
