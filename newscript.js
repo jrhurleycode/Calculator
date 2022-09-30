@@ -147,6 +147,5 @@ function operate(op, a, b) {
     newValue = multiply(a, b);
   }
   console.log(newValue);
-  currentValue = newValue;
-  return currentValue;
+  currentValue = newValue.toString();
 }
