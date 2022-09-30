@@ -121,9 +121,9 @@ function negPosConvert() {
     str2 = str1.concat(currentValue);
     currentValue = str2;
   }
-
   mainDisplay.textContent = currentValue;
   console.log(currentValue);
+  return currentValue;
 }
 
 function operate(op, a, b) {
