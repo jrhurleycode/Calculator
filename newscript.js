@@ -151,7 +151,11 @@ function operate(op, a, b) {
     newValue = subtract(a, b);
   }
   if (op == "/") {
-    newValue = divide(a, b);
+    if (divide(a, 0)) {
+      newValue = "NOOO NOT INFINITY";
+    } else {
+      newValue = divide(a, b);
+    }
   }
   if (op == "x") {
     newValue = multiply(a, b);
