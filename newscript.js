@@ -28,6 +28,7 @@ numbers.forEach((number) => {
   number.addEventListener("click", (e) => {
     setDefaultValue();
     pressNumber(e.target.textContent);
+    decimalLimit();
   });
 });
 
@@ -124,6 +125,15 @@ function negPosConvert() {
   mainDisplay.textContent = currentValue;
   console.log(currentValue);
   return currentValue;
+}
+
+function decimalLimit() {
+  if (currentValue.includes(".")) {
+    document.querySelector("#decimal").disabled = true;
+  }
+  if (!currentValue.includes(".")) {
+    document.querySelector("#decimal").disabled = false;
+  }
 }
 
 function operate(op, a, b) {
