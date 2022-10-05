@@ -9,7 +9,7 @@ let operator = [];
 let newValue = "";
 let clear = document.querySelector(".clear");
 let negPos = document.querySelector(".negPos");
-let decimal = document.querySelector(".decimal");
+let decimal = document.querySelector("#decimal");
 let equal = document.querySelector("#equals");
 let mainDisplay = document.querySelector(".main");
 let miniDisplay = document.querySelector(".mini");
@@ -46,6 +46,10 @@ clear.addEventListener("click", (e) => {
   operator = "";
 });
 
+decimal.addEventListener("click", (e) => {
+  decimalLimit();
+});
+
 //make numbers show on display.   limit numbers on display
 
 function displayNumber(num) {
@@ -69,6 +73,12 @@ function displayOperator(op) {
     operate(op, previousValue, currentValue);
   }
   currentValue = [];
+}
+
+function decimalLimit() {
+  if (currentValue.includes(".")) {
+    console.log("ok it works");
+  }
 }
 
 //make computation work
