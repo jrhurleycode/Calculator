@@ -77,7 +77,7 @@ function setDefaultValue() {
 }
 
 function pressNumber(number) {
-  if (currentValue.length <= 8)
+  if (currentValue.length <= 12)
     mainDisplay.textContent = currentValue += number;
 
   if (operatorPressed == true) {
